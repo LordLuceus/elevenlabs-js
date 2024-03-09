@@ -7,7 +7,6 @@ import * as core from "../../../../../../../../core";
 import * as ElevenLabs from "../../../../../../..";
 import urlJoin from "url-join";
 import * as errors from "../../../../../../../../errors";
-import * as stream from "stream";
 
 export declare namespace Snapshots {
     interface Options {
@@ -98,8 +97,8 @@ export class Snapshots {
         chapterId: string,
         chapterSnapshotId: string,
         requestOptions?: Snapshots.RequestOptions
-    ): Promise<stream.Readable> {
-        const _response = await core.fetcher<stream.Readable>({
+    ): Promise<ReadableStream> {
+        const _response = await core.fetcher<ReadableStream>({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.ElevenLabsEnvironment.Production,
                 `v1/projects/${projectId}/chapters/${chapterId}/snapshots/${chapterSnapshotId}/stream`

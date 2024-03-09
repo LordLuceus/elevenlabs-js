@@ -7,7 +7,6 @@ import * as core from "../../../../core";
 import * as ElevenLabs from "../../..";
 import urlJoin from "url-join";
 import * as errors from "../../../../errors";
-import * as stream from "stream";
 
 export declare namespace History {
     interface Options {
@@ -221,8 +220,8 @@ export class History {
     /**
      * Returns the audio of an history item.
      */
-    public async getAudio(historyItemId: string, requestOptions?: History.RequestOptions): Promise<stream.Readable> {
-        const _response = await core.fetcher<stream.Readable>({
+    public async getAudio(historyItemId: string, requestOptions?: History.RequestOptions): Promise<ReadableStream> {
+        const _response = await core.fetcher<ReadableStream>({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.ElevenLabsEnvironment.Production,
                 `v1/history/${historyItemId}/audio`

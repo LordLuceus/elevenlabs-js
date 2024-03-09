@@ -5,7 +5,6 @@
 import * as environments from "../../../../environments";
 import * as core from "../../../../core";
 import * as ElevenLabs from "../../..";
-import * as stream from "stream";
 import urlJoin from "url-join";
 import * as errors from "../../../../errors";
 
@@ -34,7 +33,7 @@ export class TextToSpeech {
         voiceId: string,
         request: ElevenLabs.BodyTextToSpeechV1TextToSpeechVoiceIdPost,
         requestOptions?: TextToSpeech.RequestOptions
-    ): Promise<stream.Readable> {
+    ): Promise<ReadableStream> {
         const { optimize_streaming_latency: optimizeStreamingLatency, output_format: outputFormat, ..._body } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (optimizeStreamingLatency != null) {
@@ -45,7 +44,7 @@ export class TextToSpeech {
             _queryParams["output_format"] = outputFormat;
         }
 
-        const _response = await core.fetcher<stream.Readable>({
+        const _response = await core.fetcher<ReadableStream>({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.ElevenLabsEnvironment.Production,
                 `v1/text-to-speech/${voiceId}`
@@ -102,7 +101,7 @@ export class TextToSpeech {
         voiceId: string,
         request: ElevenLabs.BodyTextToSpeechV1TextToSpeechVoiceIdStreamPost,
         requestOptions?: TextToSpeech.RequestOptions
-    ): Promise<stream.Readable> {
+    ): Promise<ReadableStream> {
         const { optimize_streaming_latency: optimizeStreamingLatency, output_format: outputFormat, ..._body } = request;
         const _queryParams: Record<string, string | string[]> = {};
         if (optimizeStreamingLatency != null) {
@@ -113,7 +112,7 @@ export class TextToSpeech {
             _queryParams["output_format"] = outputFormat;
         }
 
-        const _response = await core.fetcher<stream.Readable>({
+        const _response = await core.fetcher<ReadableStream>({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.ElevenLabsEnvironment.Production,
                 `v1/text-to-speech/${voiceId}/stream`

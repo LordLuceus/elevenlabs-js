@@ -76,19 +76,13 @@ async function fetcherImpl<R = unknown>(args: Fetcher.Args): Promise<APIResponse
         body = JSON.stringify(args.body);
     }
 
-    // In Node.js environments, the SDK always uses`node-fetch`.
-    // If not in Node.js the SDK uses global fetch if available,
-    // and falls back to node-fetch.
-    const fetchFn =
-        RUNTIME.type === "node" ? require("node-fetch") : typeof fetch == "function" ? fetch : require("node-fetch");
-
     const makeRequest = async (): Promise<Response> => {
         const controller = new AbortController();
         let abortId = undefined;
         if (args.timeoutMs != null) {
             abortId = setTimeout(() => controller.abort(), args.timeoutMs);
         }
-        const response = await fetchFn(url, {
+        const response = await fetch(url, {
             method: args.method,
             headers,
             body,

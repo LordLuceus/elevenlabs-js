@@ -9,7 +9,6 @@ import urlJoin from "url-join";
 import * as errors from "../../../../errors";
 import * as fs from "fs";
 import { default as FormData } from "form-data";
-import * as stream from "stream";
 import { Chapters } from "../resources/chapters/client/Client";
 
 export declare namespace Projects {
@@ -424,8 +423,8 @@ export class Projects {
         projectId: string,
         projectSnapshotId: string,
         requestOptions?: Projects.RequestOptions
-    ): Promise<stream.Readable> {
-        const _response = await core.fetcher<stream.Readable>({
+    ): Promise<ReadableStream> {
+        const _response = await core.fetcher<ReadableStream>({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.ElevenLabsEnvironment.Production,
                 `v1/projects/${projectId}/snapshots/${projectSnapshotId}/stream`

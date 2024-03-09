@@ -67,11 +67,7 @@ export class ElevenLabsClient extends FernClient {
                 message: `${voiceIdOrName} is not a valid voice name`,
             });
         }
-        if (isGenerateAudioStream(request)) {
-            return await this.textToSpeech.convert(voiceId, request, requestOptions);
-        } else {
-            return await this.textToSpeech.convert(voiceId, request, requestOptions);
-        }
+        return await this.textToSpeech.convert(voiceId, request, requestOptions);
     }
 }
 
