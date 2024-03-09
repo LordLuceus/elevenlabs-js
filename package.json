@@ -2,13 +2,15 @@
     "name": "elevenlabs-edge",
     "version": "0.1.6",
     "private": false,
-    "repository": "https://github.com/lordluceus/elevenlabs-js",
-    "main": "./index.js",
-    "types": "./index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lordluceus/elevenlabs-js.git"
+    },
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "scripts": {
         "format": "prettier --write 'src/**/*.ts'",
         "build": "tsc",
-        "prepack": "cp -rv dist/. .",
         "test": "jest"
     },
     "dependencies": {
