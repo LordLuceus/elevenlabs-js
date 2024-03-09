@@ -57,7 +57,7 @@ export class ElevenLabsClient extends FernClient {
     async generate(
         request: (ElevenLabsClient.GeneratAudioBulk | ElevenLabsClient.GenerateAudioStream) & { voice?: string },
         requestOptions: FernClient.RequestOptions = {}
-    ): Promise<stream.Readable> {
+    ): Promise<ReadableStream> {
         const voiceIdOrName = request.voice ?? "Bella";
         const voiceId = isVoiceId(voiceIdOrName)
             ? voiceIdOrName
@@ -67,6 +67,11 @@ export class ElevenLabsClient extends FernClient {
                 message: `${voiceIdOrName} is not a valid voice name`,
             });
         }
+
+        if (isGenerateAudioStream(request)) {
+            return await this.textToSpeech.convertAsStream(voiceId, request, requestOptions);
+        }
+
         return await this.textToSpeech.convert(voiceId, request, requestOptions);
     }
 }
