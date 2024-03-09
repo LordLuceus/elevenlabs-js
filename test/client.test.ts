@@ -1,5 +1,5 @@
 import { describe, it } from "@jest/globals";
-import { ElevenLabsClient, play, stream } from "../src";
+import { ElevenLabsClient } from "../src";
 
 describe("eleven labs", () => {
     it.skip("list voices", async () => {
@@ -18,7 +18,6 @@ describe("eleven labs", () => {
             text: "We support two main models: the newest eleven_multilingual_v2, a single foundational model supporting 29 languages including English, Chinese, Spanish, Hindi, Portuguese, French, German, Japanese, Arabic, Korean, Indonesian, Italian, Dutch, Turkish, Polish, Swedish, Filipino, Malay, Russian, Romanian, Ukrainian, Greek, Czech, Danish, Finnish, Bulgarian, Croatian, Slovak, and Tamil; and eleven_monolingual_v1, a low-latency model specifically trained for English speech.",
             model_id: "eleven_multilingual_v2",
         });
-        play(audio);
     });
 
     it.skip("text to speech stream", async () => {
@@ -29,7 +28,6 @@ describe("eleven labs", () => {
             text: "We support two main models: the newest eleven_multilingual_v2, a single foundational model supporting 29 languages including English, Chinese, Spanish, Hindi, Portuguese, French, German, Japanese, Arabic, Korean, Indonesian, Italian, Dutch, Turkish, Polish, Swedish, Filipino, Malay, Russian, Romanian, Ukrainian, Greek, Czech, Danish, Finnish, Bulgarian, Croatian, Slovak, and Tamil; and eleven_monolingual_v1, a low-latency model specifically trained for English speech.",
             model_id: "eleven_multilingual_v2",
         });
-        stream(audioStream);
     });
 
     it.skip("generate", async () => {
@@ -41,6 +39,5 @@ describe("eleven labs", () => {
             text: "Hello! 你好! Hola! नमस्ते! Bonjour! こんにちは! مرحبا! 안녕하세요! Ciao! Cześć! Привіт! வணக்கம்!",
             model_id: "eleven_multilingual_v2",
         });
-        await play(audio);
     });
 });
